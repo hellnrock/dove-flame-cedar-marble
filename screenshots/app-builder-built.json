@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "NOX — Puro Mexa Flow",
+      "hasCanvas": false,
+      "bodyTextLen": 2668,
+      "bodyTextHash": "3c7d390fa4240fd62a3fa9fadd39179c5914a3a1eab45e9b8906b7404c2153c5",
+      "bodyTextPrefix": "NOX INICIO NOTICIAS MÚSICA CONCIERTOS CULTURA DEPORTE CONCIERTOS",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "NOX — Puro Mexa Flow",
+      "hasCanvas": false,
+      "bodyTextLen": 2623,
+      "bodyTextHash": "26805feec7ee50b474a38ef991f11936432dc65cfa90f7ee44c94df627971e1d",
+      "bodyTextPrefix": "NOX Menú CONCIERTOS La noche que el rock mexicano volvió a ser r",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

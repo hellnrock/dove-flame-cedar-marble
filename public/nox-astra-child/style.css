@@ -1,0 +1,1340 @@
+/*
+Theme Name: Astra Child
+Theme URI: https://nox.hellnrock.com
+Description: Tema hijo oficial de NOX — Puro Mexa Flow (HellNRock Labs)
+Author: HellNRock Media
+Author URI: https://hellnrock.com
+Template: astra
+Version: 4.1.0
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+/* ==========================================================================
+   1. TOKENS
+   Interactive state machine (link / surface / border / rule):
+     Normal  Hover     Active
+     #A8B0C0 #00F5FF   #00F5FF   text
+     #05070B #071A20   #071A20   background
+     #151D29 #00F5FF   #00F5FF   border
+     #151D29 #151D29   #151D29   separator — never changes
+   Logo: source 512×512, display 168px (3× retina). Do not stretch.
+   Hero: opacity crossfade only. No Ken Burns, no zoom, no pan.
+   ========================================================================== */
+
+:root {
+  --nox-bg: #05070b;
+  --nox-bg-hover: #071a20;
+  --nox-bg-active: #071a20;
+  --nox-surface: #05070b;
+  --nox-heading: #f3f6fa;
+  --nox-text: #a8b0c0;
+  --nox-text-hover: #00f5ff;
+  --nox-text-active: #00f5ff;
+  --nox-dim: #6d7584;
+  --nox-accent: #00f5ff;
+  --nox-on-accent: #05070b;
+  --nox-border: #151d29;
+  --nox-border-hover: #00f5ff;
+  --nox-border-active: #00f5ff;
+  --nox-rule: #151d29;
+  --nox-font-display: "Chakra Petch", "IBM Plex Sans", sans-serif;
+  --nox-font-body: "IBM Plex Sans", "Chakra Petch", sans-serif;
+  --nox-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --nox-t-fast: 160ms;
+  --nox-t-mid: 240ms;
+  --nox-radius: 2px;
+  --nox-logo: 168px;
+  --nox-logo-sm: 112px;
+  --nox-gutter: clamp(16px, 3vw, 40px);
+  --nox-measure: 66ch;
+  --ast-global-color-0: #00f5ff;
+  --ast-global-color-1: #05070b;
+  --ast-global-color-2: #a8b0c0;
+  --ast-global-color-3: #151d29;
+  --ast-global-color-4: #f3f6fa;
+  --ast-global-color-5: #071a20;
+  --ast-border-color: #151d29;
+}
+
+/* ==========================================================================
+   2. DOCUMENT
+   ========================================================================== */
+
+html {
+  background: var(--nox-bg);
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#page,
+.site,
+.site-content,
+.ast-separate-container,
+.ast-plain-container,
+#content,
+.ast-container {
+  background-color: var(--nox-bg) !important;
+  color: var(--nox-text);
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--nox-font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--nox-text);
+}
+
+body { margin: 0; }
+
+h1, h2, h3, h4, h5, h6,
+.entry-title,
+.ast-archive-title,
+.widget-title {
+  font-family: var(--nox-font-display);
+  font-weight: 600;
+  color: var(--nox-heading);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+::selection {
+  background: var(--nox-accent);
+  color: var(--nox-on-accent);
+}
+
+/* ==========================================================================
+   3. LINKS — exact state machine
+   ========================================================================== */
+
+a {
+  color: var(--nox-text);
+  text-decoration: none;
+  transition:
+    color var(--nox-t-fast) var(--nox-ease),
+    background-color var(--nox-t-fast) var(--nox-ease),
+    border-color var(--nox-t-fast) var(--nox-ease);
+}
+
+a:hover { color: var(--nox-text-hover); }
+a:active { color: var(--nox-text-active); }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.menu-link:focus-visible,
+.nox-hero-prev:focus-visible,
+.nox-hero-next:focus-visible {
+  outline: 2px solid var(--nox-accent);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   4. CONTROLS
+   ========================================================================== */
+
+.ast-button,
+.button,
+button[type="submit"],
+input[type="submit"],
+.wp-block-button__link,
+.search-submit,
+.ast-search-menu-icon .search-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--nox-border);
+  border-radius: var(--nox-radius);
+  background: var(--nox-bg);
+  color: var(--nox-text);
+  font-family: var(--nox-font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color var(--nox-t-fast) var(--nox-ease),
+    background-color var(--nox-t-fast) var(--nox-ease),
+    border-color var(--nox-t-fast) var(--nox-ease);
+}
+
+.ast-button:hover,
+.button:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover,
+.wp-block-button__link:hover,
+.search-submit:hover {
+  color: var(--nox-text-hover);
+  background: var(--nox-bg-hover);
+  border-color: var(--nox-border-hover);
+}
+
+.ast-button:active,
+.button:active,
+button[type="submit"]:active,
+input[type="submit"]:active,
+.wp-block-button__link:active {
+  color: var(--nox-text-active);
+  background: var(--nox-bg-active);
+  border-color: var(--nox-border-active);
+}
+
+.wp-block-button__link,
+input[type="submit"].search-submit {
+  background: var(--nox-accent) !important;
+  color: var(--nox-on-accent) !important;
+  border-color: var(--nox-accent) !important;
+}
+
+.wp-block-button__link:hover,
+input[type="submit"].search-submit:hover {
+  background: var(--nox-bg-hover) !important;
+  color: var(--nox-text-hover) !important;
+  border-color: var(--nox-border-hover) !important;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+textarea,
+select,
+.search-field,
+.ast-search-menu-icon .search-field {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--nox-border);
+  border-radius: var(--nox-radius);
+  background: var(--nox-bg);
+  color: var(--nox-heading);
+  font-family: var(--nox-font-body);
+  font-size: 0.95rem;
+  transition:
+    border-color var(--nox-t-fast) var(--nox-ease),
+    background-color var(--nox-t-fast) var(--nox-ease);
+}
+
+input::placeholder,
+textarea::placeholder { color: var(--nox-dim); }
+
+input:hover,
+textarea:hover,
+select:hover,
+.search-field:hover {
+  background: var(--nox-bg-hover);
+  border-color: var(--nox-border);
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.search-field:focus {
+  outline: none;
+  background: var(--nox-bg-active);
+  border-color: var(--nox-border-active);
+  color: var(--nox-heading);
+}
+
+/* ==========================================================================
+   5. HEADER + LOGO 512×512
+   Display size = 168px so a 512 source lands on an integer 3× retina pixel.
+   Keep object-fit: contain. Never force a non-square box.
+   ========================================================================== */
+
+.main-header-bar,
+.ast-primary-header-bar,
+.ast-above-header-bar,
+.ast-below-header-bar,
+.ast-main-header-wrap,
+.ast-above-header.ast-above-header-bar,
+#masthead,
+.site-header,
+.ast-theme-transparent-header #masthead {
+  background-color: var(--nox-bg) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.ast-above-header-bar,
+.ast-above-header.ast-above-header-bar {
+  border-bottom: 0 !important;
+  padding: 36px var(--nox-gutter) 22px !important;
+}
+
+.site-branding,
+.ast-site-identity,
+.custom-logo-link,
+.ast-site-title-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.custom-logo-link { line-height: 0; }
+
+.custom-logo-link img,
+.site-branding img,
+.site-logo-img img,
+.transparent-custom-logo img,
+.ast-header-break-point .custom-logo-link img {
+  width: var(--nox-logo) !important;
+  height: var(--nox-logo) !important;
+  max-width: var(--nox-logo) !important;
+  max-height: var(--nox-logo) !important;
+  margin: 0 auto 16px !important;
+  display: block !important;
+  object-fit: contain !important;
+  filter: none !important;
+  border-radius: 0 !important;
+}
+
+.site-title,
+.site-title a {
+  color: var(--nox-heading) !important;
+  font-family: var(--nox-font-display) !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.28em !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  margin: 0 0 6px !important;
+  line-height: 1.1 !important;
+}
+
+.site-title a:hover { color: var(--nox-text-hover) !important; }
+
+.site-description {
+  color: var(--nox-dim) !important;
+  font-family: var(--nox-font-display) !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+.site-description:nth-of-type(2) { display: none !important; }
+
+/* ==========================================================================
+   6. NAV
+   Separators stay --nox-rule in every state.
+   ========================================================================== */
+
+.ast-primary-header-bar,
+.ast-below-header-bar,
+.main-header-bar {
+  border-top: 1px solid var(--nox-rule) !important;
+  border-bottom: 1px solid var(--nox-rule) !important;
+  width: 100% !important;
+}
+
+.ast-button-wrap {
+  display: none;
+  justify-content: flex-end;
+  padding: 8px 16px;
+}
+
+.main-header-menu,
+.ast-builder-menu .main-navigation,
+.ast-builder-menu-1 .main-header-menu {
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap;
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+.main-header-menu .menu-item { margin: 0 !important; list-style: none; }
+
+.main-header-menu .menu-link,
+.main-navigation a,
+.ast-builder-menu .menu-link {
+  color: var(--nox-text) !important;
+  background: transparent !important;
+  font-family: var(--nox-font-display) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  font-size: 0.78rem !important;
+  padding: 18px 22px !important;
+  border: 0 !important;
+  border-right: 1px solid var(--nox-rule) !important;
+  border-bottom: 1px solid transparent !important;
+  display: block !important;
+  line-height: 1 !important;
+  transition:
+    color var(--nox-t-fast) var(--nox-ease),
+    background-color var(--nox-t-fast) var(--nox-ease),
+    border-color var(--nox-t-fast) var(--nox-ease) !important;
+}
+
+.main-header-menu > .menu-item:last-child > .menu-link,
+.main-header-menu > .menu-item:last-child > .menu-link:hover,
+.main-header-menu > .menu-item:last-child > .menu-link:active,
+.main-header-menu > .menu-item.current-menu-item:last-child > .menu-link {
+  border-right-color: transparent !important;
+}
+
+.main-header-menu .menu-link:hover,
+.main-navigation a:hover,
+.ast-builder-menu .menu-link:hover {
+  color: var(--nox-text-hover) !important;
+  background-color: var(--nox-bg-hover) !important;
+  border-right-color: var(--nox-rule) !important;
+  border-bottom-color: var(--nox-border-hover) !important;
+}
+
+.main-header-menu .current-menu-item > .menu-link,
+.main-header-menu .current-menu-ancestor > .menu-link,
+.main-navigation .current-menu-item > a,
+.menu-link:active {
+  color: var(--nox-text-active) !important;
+  background-color: var(--nox-bg-active) !important;
+  border-right-color: var(--nox-rule) !important;
+  border-bottom-color: var(--nox-border-active) !important;
+}
+
+.sub-menu {
+  background: var(--nox-bg) !important;
+  border: 1px solid var(--nox-border) !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.sub-menu .menu-link {
+  border-right: 0 !important;
+  border-bottom: 1px solid var(--nox-rule) !important;
+  padding: 12px 18px !important;
+  text-align: left !important;
+}
+
+.sub-menu .menu-item:last-child .menu-link { border-bottom: 0 !important; }
+
+.ast-mobile-menu-trigger,
+.menu-toggle,
+.ast-button-wrap .menu-toggle {
+  color: var(--nox-text) !important;
+  background: var(--nox-bg) !important;
+  border: 1px solid var(--nox-border) !important;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--nox-radius);
+}
+
+.ast-mobile-menu-trigger:hover,
+.menu-toggle:hover {
+  color: var(--nox-text-hover) !important;
+  background: var(--nox-bg-hover) !important;
+  border-color: var(--nox-border-hover) !important;
+}
+
+.ast-mobile-popup-drawer,
+.ast-mobile-header-wrap,
+.ast-header-break-point .main-header-bar-navigation {
+  background: var(--nox-bg) !important;
+}
+
+/* ==========================================================================
+   7. LAYOUT
+   ========================================================================== */
+
+.ast-container {
+  width: min(1240px, calc(100% - (var(--nox-gutter) * 2)));
+  margin-inline: auto;
+}
+
+.site-content { padding: 28px 0 0; }
+
+@media (min-width: 921px) {
+  .ast-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 40px;
+    align-items: start;
+  }
+}
+
+.ast-left-sidebar .ast-row {
+  grid-template-columns: 300px minmax(0, 1fr);
+}
+
+/* ==========================================================================
+   8. HERO — fade only
+   ========================================================================== */
+
+.nox-hero-gallery {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 280px;
+  aspect-ratio: 2 / 1;
+  margin: 0 0 28px;
+  overflow: hidden;
+  border: 1px solid var(--nox-border);
+  background: var(--nox-bg);
+  border-radius: 0;
+}
+
+.nox-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 900ms var(--nox-ease), visibility 900ms var(--nox-ease);
+  z-index: 1;
+}
+
+.nox-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+.nox-slide img,
+.nox-slide .nox-slide-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  transform: none !important;
+  animation: none !important;
+}
+
+.nox-hero-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 72px 28px 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 7, 11, 0) 0%,
+    rgba(5, 7, 11, 0.2) 28%,
+    rgba(5, 7, 11, 0.92) 100%
+  );
+  z-index: 3;
+}
+
+.nox-hero-badge {
+  display: inline-block;
+  background: var(--nox-accent);
+  color: var(--nox-on-accent);
+  font-family: var(--nox-font-display);
+  font-weight: 700;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  padding: 5px 9px;
+  border-radius: 0;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.nox-hero-title {
+  color: var(--nox-heading);
+  font-family: var(--nox-font-display);
+  font-size: clamp(1.35rem, 2.6vw, 2.15rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-shadow: none;
+  margin: 0 0 8px;
+  line-height: 1.15;
+  max-width: 22ch;
+}
+
+.nox-hero-title a { color: inherit; }
+.nox-hero-title a:hover { color: var(--nox-text-hover); }
+
+.nox-hero-kicker {
+  color: var(--nox-dim);
+  font-size: 0.9rem;
+  margin: 0;
+  max-width: 46ch;
+}
+
+.nox-hero-prev,
+.nox-hero-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: var(--nox-bg);
+  color: var(--nox-text);
+  border: 1px solid var(--nox-border);
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 0;
+  transition:
+    color var(--nox-t-fast) var(--nox-ease),
+    background-color var(--nox-t-fast) var(--nox-ease),
+    border-color var(--nox-t-fast) var(--nox-ease);
+}
+
+.nox-hero-prev:hover,
+.nox-hero-next:hover {
+  background: var(--nox-bg-hover);
+  color: var(--nox-text-hover);
+  border-color: var(--nox-border-hover);
+}
+
+.nox-hero-prev:active,
+.nox-hero-next:active {
+  background: var(--nox-bg-active);
+  color: var(--nox-text-active);
+  border-color: var(--nox-border-active);
+}
+
+.nox-hero-prev { left: 14px; }
+.nox-hero-next { right: 14px; }
+
+.nox-hero-dots {
+  position: absolute;
+  right: 28px;
+  bottom: 22px;
+  z-index: 4;
+  display: flex;
+  gap: 8px;
+}
+
+.nox-hero-dots button {
+  width: 18px;
+  height: 2px;
+  padding: 0;
+  border: 0;
+  background: var(--nox-rule);
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.nox-hero-dots button[aria-current="true"] { background: var(--nox-accent); }
+
+/* ==========================================================================
+   9. CARDS / POSTS
+   ========================================================================== */
+
+.ast-separate-container .ast-article-post,
+.ast-separate-container .ast-article-single,
+.ast-article-post,
+.ast-article-single {
+  background-color: var(--nox-surface) !important;
+  border: 1px solid var(--nox-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden;
+  margin-bottom: 20px !important;
+  padding: 0 !important;
+  transition:
+    background-color var(--nox-t-mid) var(--nox-ease),
+    border-color var(--nox-t-mid) var(--nox-ease);
+}
+
+.ast-article-post:hover {
+  background-color: var(--nox-bg-hover) !important;
+  border-color: var(--nox-border-hover) !important;
+}
+
+.ast-article-post:active {
+  background-color: var(--nox-bg-active) !important;
+  border-color: var(--nox-border-active) !important;
+}
+
+.ast-article-post .post-thumb,
+.ast-article-post .post-thumb-img-content,
+.ast-article-single .post-thumb {
+  margin: 0 !important;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--nox-bg);
+  border-bottom: 1px solid var(--nox-rule);
+}
+
+.ast-article-post .post-thumb img,
+.ast-article-post .wp-post-image,
+.ast-article-single .post-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: none;
+}
+
+.ast-article-post .post-content,
+.ast-article-single .entry-content,
+.ast-article-post .blog-layout-1 {
+  padding: 20px 22px 22px;
+}
+
+.entry-title,
+.ast-article-post .entry-title,
+.ast-article-single .entry-title {
+  font-size: 1.28rem;
+  margin: 0 0 8px;
+  letter-spacing: -0.025em;
+}
+
+.ast-article-post .entry-title a { color: var(--nox-heading); }
+.ast-article-post:hover .entry-title a { color: var(--nox-text-hover); }
+
+.entry-meta,
+.posted-on,
+.cat-links,
+.ast-blog-meta {
+  color: var(--nox-dim);
+  font-family: var(--nox-font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.entry-meta a,
+.cat-links a { color: var(--nox-dim); }
+.entry-meta a:hover,
+.cat-links a:hover { color: var(--nox-text-hover); }
+
+.entry-content,
+.ast-excerpt,
+.ast-article-post p {
+  color: var(--nox-text);
+  font-size: 0.95rem;
+}
+
+.ast-article-single .entry-content { max-width: var(--nox-measure); }
+.ast-article-single .entry-content p { margin: 0 0 1.15em; }
+.ast-article-single .entry-header { padding: 28px 28px 0; }
+.ast-article-single .entry-content { padding: 12px 28px 36px; }
+
+.read-more a,
+.ast-read-more {
+  font-family: var(--nox-font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--nox-text);
+}
+
+.read-more a:hover { color: var(--nox-text-hover); }
+
+/* ==========================================================================
+   10. SIDEBAR
+   ========================================================================== */
+
+#secondary .widget,
+.widget-area .widget {
+  background: var(--nox-surface) !important;
+  border: 1px solid var(--nox-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 18px 18px 16px !important;
+  margin-bottom: 16px !important;
+}
+
+#secondary .widget-title,
+.widget-area .widget-title {
+  font-size: 0.72rem !important;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--nox-heading);
+  border-bottom: 1px solid var(--nox-rule);
+  padding-bottom: 10px;
+  margin: 0 0 14px;
+}
+
+#secondary ul { list-style: none; margin: 0; padding: 0; }
+
+#secondary li {
+  border-bottom: 1px solid var(--nox-rule);
+  padding: 9px 0;
+}
+
+#secondary li:last-child { border-bottom: 0; }
+
+#secondary a { color: var(--nox-text); }
+#secondary a:hover { color: var(--nox-text-hover); }
+#secondary a:active { color: var(--nox-text-active); }
+
+.search-form {
+  display: flex;
+  gap: 8px;
+}
+
+.search-note { margin: 10px 0 0; font-size: 0.85rem; }
+.widget-copy { margin: 0; font-size: 0.92rem; }
+
+/* ==========================================================================
+   11. PAGINATION / COMMENTS / FOOTER
+   ========================================================================== */
+
+.ast-pagination,
+.page-links,
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.ast-pagination .page-numbers,
+.nav-links a,
+.nav-links span,
+.page-links a {
+  min-width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--nox-border);
+  background: var(--nox-bg);
+  color: var(--nox-text);
+  font-family: var(--nox-font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.ast-pagination .page-numbers:hover,
+.nav-links a:hover {
+  color: var(--nox-text-hover);
+  background: var(--nox-bg-hover);
+  border-color: var(--nox-border-hover);
+}
+
+.ast-pagination .page-numbers.current,
+.nav-links .current {
+  color: var(--nox-text-active);
+  background: var(--nox-bg-active);
+  border-color: var(--nox-border-active);
+}
+
+.ast-comment-info,
+.comment-respond {
+  border: 1px solid var(--nox-border);
+  background: var(--nox-bg);
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+/* ==========================================================================
+   11b. FOOTER EDITORIAL + HALO
+   ========================================================================== */
+
+.site-footer,
+.ast-footer-overlay,
+.ast-small-footer,
+.ast-footer-copyright {
+  background: var(--nox-bg) !important;
+  color: var(--nox-dim) !important;
+  border-top: 0 !important;
+}
+
+.nox-footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--nox-bg);
+  color: var(--nox-text);
+  font-family: var(--nox-font-display);
+}
+
+.nox-footer *,
+.nox-footer *::before,
+.nox-footer *::after {
+  box-sizing: border-box;
+}
+
+.nox-footer-cta {
+  position: relative;
+  padding: 82px 24px 78px;
+  background: var(--nox-bg);
+  border-top: 1px solid var(--nox-rule);
+  border-bottom: 1px solid var(--nox-rule);
+  overflow: hidden;
+}
+
+.nox-footer-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 140px;
+  height: 2px;
+  background: var(--nox-accent);
+  transform: translateX(-50%);
+}
+
+.nox-footer-cta::after {
+  content: "";
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  width: 900px;
+  height: 520px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 245, 255, 0.16) 0%,
+    rgba(0, 245, 255, 0.055) 36%,
+    rgba(0, 245, 255, 0) 70%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.nox-footer-cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.nox-footer-kicker {
+  display: block;
+  margin-bottom: 19px;
+  color: var(--nox-accent);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nox-footer-cta h2 {
+  max-width: 800px;
+  margin: 0 auto 18px;
+  color: var(--nox-heading);
+  font-size: clamp(1.875rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-family: var(--nox-font-display);
+}
+
+.nox-footer-cta p {
+  max-width: 700px;
+  margin: 0 auto 34px;
+  color: var(--nox-dim);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  font-family: var(--nox-font-body);
+}
+
+.nox-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.nox-footer-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 175px;
+  min-height: 44px;
+  padding: 14px 27px;
+  background: var(--nox-accent);
+  border: 1px solid var(--nox-accent);
+  border-radius: var(--nox-radius);
+  color: var(--nox-on-accent) !important;
+  font-family: var(--nox-font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  transition:
+    color var(--nox-t-fast) var(--nox-ease),
+    background-color var(--nox-t-fast) var(--nox-ease),
+    border-color var(--nox-t-fast) var(--nox-ease);
+}
+
+.nox-footer-button:hover {
+  background: var(--nox-bg-hover);
+  color: var(--nox-text-hover) !important;
+  border-color: var(--nox-border-hover);
+}
+
+.nox-footer-button:active {
+  background: var(--nox-bg-active);
+  color: var(--nox-text-active) !important;
+  border-color: var(--nox-border-active);
+}
+
+.nox-footer-service {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--nox-text) !important;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none !important;
+  transition: color var(--nox-t-fast) var(--nox-ease);
+}
+
+.nox-footer-service span {
+  display: inline-flex;
+  color: var(--nox-accent);
+  transition: transform var(--nox-t-fast) var(--nox-ease);
+}
+
+.nox-footer-service:hover {
+  color: var(--nox-text-hover) !important;
+}
+
+.nox-footer-service:hover span {
+  transform: translateX(5px);
+}
+
+.nox-footer-main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 60px var(--nox-gutter) 25px;
+}
+
+.nox-footer-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 2fr) repeat(3, minmax(120px, 1fr));
+  gap: 65px;
+  padding-bottom: 52px;
+}
+
+.nox-footer-logo {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--nox-heading) !important;
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 0.22em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  transition: color var(--nox-t-fast) var(--nox-ease);
+}
+
+.nox-footer-logo:hover {
+  color: var(--nox-text-hover) !important;
+}
+
+.nox-footer-description {
+  max-width: 370px;
+  margin: 0;
+  color: var(--nox-dim);
+  font-size: 0.875rem;
+  line-height: 1.8;
+  font-family: var(--nox-font-body);
+}
+
+.nox-footer-column h3 {
+  margin: 4px 0 21px;
+  color: var(--nox-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.nox-footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nox-footer-column li {
+  margin: 0 0 10px;
+  border: 0;
+  padding: 0;
+}
+
+.nox-footer-column a {
+  color: var(--nox-dim) !important;
+  font-size: 0.8125rem;
+  text-decoration: none !important;
+  transition: color var(--nox-t-fast) var(--nox-ease);
+}
+
+.nox-footer-column a:hover {
+  color: var(--nox-text-hover) !important;
+}
+
+.nox-footer-column a:active {
+  color: var(--nox-text-active) !important;
+}
+
+.nox-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 22px;
+  border-top: 1px solid var(--nox-rule);
+  color: var(--nox-dim);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nox-footer-powered {
+  text-align: right;
+}
+
+.nox-footer-powered a {
+  color: var(--nox-text) !important;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: color var(--nox-t-fast) var(--nox-ease);
+}
+
+.nox-footer-powered a:hover {
+  color: var(--nox-text-hover) !important;
+}
+
+@media (max-width: 900px) {
+  .nox-footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 45px;
+  }
+
+  .nox-footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .nox-footer-cta {
+    padding: 60px 20px;
+  }
+
+  .nox-footer-kicker {
+    white-space: normal;
+  }
+
+  .nox-footer-cta h2 {
+    font-size: 1.8rem;
+  }
+
+  .nox-footer-cta p {
+    font-size: 0.875rem;
+  }
+
+  .nox-footer-actions {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .nox-footer-button {
+    width: 100%;
+    max-width: 230px;
+  }
+
+  .nox-footer-main {
+    padding: 45px 22px 22px;
+  }
+
+  .nox-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .nox-footer-brand {
+    grid-column: auto;
+  }
+
+  .nox-footer-description {
+    margin: 0 auto;
+  }
+
+  .nox-footer-bottom {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 7px;
+  }
+
+  .nox-footer-powered {
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nox-footer-service:hover span {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   12. GUTENBERG
+   ========================================================================== */
+
+.wp-block-quote,
+blockquote {
+  border-left: 1px solid var(--nox-accent);
+  border-right: 0;
+  margin: 1.6em 0;
+  padding: 0 0 0 18px;
+  color: var(--nox-heading);
+  font-family: var(--nox-font-display);
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  background: transparent;
+}
+
+.wp-block-separator,
+hr {
+  border: 0;
+  border-top: 1px solid var(--nox-rule);
+  background: none;
+  height: 0;
+  margin: 2em 0;
+}
+
+.wp-block-image img { border: 1px solid var(--nox-border); }
+
+.entry-content a:not(.ast-button):not(.wp-block-button__link) {
+  color: var(--nox-text);
+  box-shadow: inset 0 -1px 0 var(--nox-rule);
+}
+
+.entry-content a:not(.ast-button):not(.wp-block-button__link):hover {
+  color: var(--nox-text-hover);
+  box-shadow: inset 0 -1px 0 var(--nox-border-hover);
+}
+
+/* ==========================================================================
+   13. MOBILE
+   ========================================================================== */
+
+@media (max-width: 921px) {
+  :root { --nox-logo: var(--nox-logo-sm); }
+
+  .ast-above-header-bar,
+  .ast-above-header.ast-above-header-bar {
+    padding: 20px 16px 14px !important;
+  }
+
+  .site-title,
+  .site-title a {
+    font-size: 1.05rem !important;
+    letter-spacing: 0.22em !important;
+  }
+
+  .ast-button-wrap { display: flex; }
+
+  .main-navigation { display: none; }
+  .main-navigation.is-open {
+    display: block;
+    border-top: 1px solid var(--nox-rule);
+  }
+
+  .main-header-menu,
+  .ast-builder-menu .main-navigation {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .main-header-menu .menu-link,
+  .main-navigation a {
+    font-size: 0.8rem !important;
+    padding: 16px 18px !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--nox-rule) !important;
+    text-align: left !important;
+  }
+
+  .main-header-menu > .menu-item:last-child > .menu-link {
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  .nox-hero-gallery {
+    height: auto;
+    min-height: 200px;
+    aspect-ratio: 5 / 4;
+    margin-bottom: 18px;
+  }
+
+  .nox-hero-overlay { padding: 36px 16px 18px; }
+  .nox-hero-title { max-width: none; }
+  .nox-hero-prev,
+  .nox-hero-next { width: 40px; height: 40px; }
+  .nox-hero-prev { left: 8px; }
+  .nox-hero-next { right: 8px; }
+
+  .ast-article-single .entry-header,
+  .ast-article-single .entry-content {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .search-form { flex-direction: column; }
+  .nox-hero-dots { right: 16px; bottom: 14px; }
+}
+
+/* ==========================================================================
+   14. MOTION / A11Y
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .nox-slide { transition: none; }
+}
+
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.alignwide { width: 100%; }
+.alignfull { width: 100vw; margin-left: calc(50% - 50vw); }
